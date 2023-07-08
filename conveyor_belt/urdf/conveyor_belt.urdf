@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="conveyor_belt">
+  <link
+    name="belt_base">
+    <inertial>
+      <origin
+        xyz="0.506555924956087 0.576257668395528 0.809187850290248"
+        rpy="0 0 0" />
+      <mass
+        value="16.5" />
+      <inertia
+        ixx="0.1271875"
+        ixy="4.88613779066801E-18"
+        ixz="-4.0962603679399E-17"
+        iyy="1.7875"
+        iyz="-9.93851991445046E-19"
+        izz="1.6671875" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="belt_body">
+    <inertial>
+      <origin
+        xyz="0 0.0440791706940699 1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="25.4688050576424" />
+      <inertia
+        ixx="0.178224280202433"
+        ixy="2.42064928296306E-18"
+        ixz="7.03037346221069E-17"
+        iyy="2.24920451600626"
+        iyz="1.05879118406788E-19"
+        izz="2.16108992355413" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 1 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="belt_body_joint"
+    type="fixed">
+    <origin
+      xyz="0.55656 -0.80919 0.80126"
+      rpy="1.5708 0 0" />
+    <parent
+      link="belt_base" />
+    <child
+      link="belt_body" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="belt_moving">
+    <inertial>
+      <origin
+        xyz="0.46 0.00249999999999995 0"
+        rpy="0 0 0" />
+      <mass
+        value="1.15" />
+      <inertia
+        ixx="0.00599197916666667"
+        ixy="5.95299272839392E-20"
+        ixz="3.71519944438371E-19"
+        iyy="0.0871029166666668"
+        iyz="-3.35007904289034E-34"
+        izz="0.0811157291666668" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_moving.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_moving.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="belt_moving_joint"
+    type="prismatic">
+    <origin
+      xyz="-0.3981 0.1 0"
+      rpy="0 0 0" />
+    <parent
+      link="belt_body" />
+    <child
+      link="belt_moving" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>
