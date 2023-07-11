@@ -7,9 +7,31 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(robot_state_publisher REQUIRED)
+find_package(xacro REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+
+install(DIRECTORY
+    urdf
+    meshes
+    launch
+    worlds
+    DESTINATION share/${PROJECT_NAME}/
+    )
+
+
+install(
+    DIRECTORY include/conveyor_belt
+    DESTINATION include
+    )
+
+
+install(
+    PROGRAMS
+    launch/robot_description_publisher.py
+    DESTINATION lib/${PROJECT_NAME}
+    )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
