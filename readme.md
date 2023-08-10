@@ -67,3 +67,6 @@ Launch gazebo using launch file and then run the below 2 commands to start the c
 Tried using this command but did not works try new commands
 
 https://www.youtube.com/watch?v=BmLdjLNJHoY -->
+
+
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:~/ros_ws2/build/conveyor_belt

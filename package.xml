@@ -12,12 +12,15 @@
   <build_depend>rosidl_default_generators</build_depend>
 
   <build_depend>xacro</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+
 
   <depend>gazebo_ros_pkgs</depend>
   <depend>robot_state_publisher</depend>
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
 
+  <exec_depend>gazebo_ros</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

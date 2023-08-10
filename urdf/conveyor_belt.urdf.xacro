@@ -4,6 +4,30 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="conveyor_belt" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  
+  
+  <xacro:macro name="body_color">
+    <visual>
+      <material>
+        <ambient>0.501960784313725 1 0.501960784313725 1</ambient>
+        <diffuse>0.501960784313725 1 0.501960784313725 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+      </material>
+    </visual>
+  </xacro:macro>
+  <xacro:macro name="belt_color">
+    <visual>
+      <material>
+        <ambient>0 0 0 1</ambient>
+        <diffuse>0 0 0  1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+      </material>
+    </visual>
+  </xacro:macro>
+
   <link
     name="belt_base">
     <inertial>
@@ -151,8 +175,33 @@
       xyz="1 0 0" />
     <limit
       lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      upper="0.01"
+      effort="10"
+      velocity="10" />
   </joint>
+
+
+  <gazebo reference="belt_base">
+    <xacro:belt_color />
+  </gazebo>
+  <gazebo reference="belt_body">
+    <xacro:body_color />
+  </gazebo>
+  <gazebo reference="belt_moving">
+    <xacro:belt_color />
+  </gazebo>
+
+  <gazebo>
+  <plugin filename="libconveyor_belt_plugin.so" name="conveyor_belt_plugin">
+        <ros>
+          <namespace></namespace>
+        </ros>
+        <max_velocity>0.2</max_velocity>
+        <publish_rate>10</publish_rate>
+  </plugin>
+  </gazebo>
+
+  
+
+
 </robot>
