@@ -1,5 +1,5 @@
-#ifndef ARIAC_PLUGINS__CONVEYOR_BELT_PLUGIN_HPP_
-#define ARIAC_PLUGINS__CONVEYOR_BELT_PLUGIN_HPP_
+#ifndef CONVEYOR_BELT_PLUGIN_HPP_
+#define CONVEYOR_BELT_PLUGIN_HPP_
 
 #include <gazebo/common/Plugin.hh>
 
@@ -36,6 +36,6 @@ namespace gazebo
     std::unique_ptr<ConveyorBeltPluginPrivate> impl_;
   };
 
-  #endif  // AARIAC_PLUGINS__CONVEYOR_BELT_PLUGIN_HPP_
+  #endif  // CONVEYOR_BELT_PLUGIN_HPP_
 } // namespace gazebo
 

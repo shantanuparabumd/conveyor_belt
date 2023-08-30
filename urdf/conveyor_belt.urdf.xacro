@@ -1,17 +1,15 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="conveyor_belt" xmlns:xacro="http://ros.org/wiki/xacro">
-  
-  
-  
+<robot  name="conveyor_belt" xmlns:xacro="http://ros.org/wiki/xacro">
+
+
   <xacro:macro name="body_color">
     <visual>
       <material>
-        <ambient>0.501960784313725 1 0.501960784313725 1</ambient>
-        <diffuse>0.501960784313725 1 0.501960784313725 1</diffuse>
+        <ambient>0.501960784313725 0.501960784313725 0.501960784313725 1</ambient>
+        <diffuse>0.501960784313725 0.501960784313725 0.501960784313725 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <emissive>0 0 0 0</emissive>
       </material>
@@ -28,21 +26,22 @@
     </visual>
   </xacro:macro>
 
+
   <link
-    name="belt_base">
+    name="base_link">
     <inertial>
       <origin
-        xyz="1.11022302462516E-16 -1.11022302462516E-16 0.025"
+        xyz="1.15972439062802E-17 -0.0273162100367329 1.02144955943776E-17"
         rpy="0 0 0" />
       <mass
-        value="16.5" />
+        value="2430.68583470577" />
       <inertia
-        ixx="0.1271875"
-        ixy="4.09626036793989E-17"
-        ixz="4.88613779066815E-18"
-        iyy="1.6671875"
-        iyz="-4.1907499658812E-16"
-        izz="1.7875" />
+        ixx="431.198140853202"
+        ixy="2.18658245479853E-14"
+        ixz="4.38017677684144E-14"
+        iyy="7514.31711977665"
+        iyz="3.72364768160213E-15"
+        izz="7545.20095484556" />
     </inertial>
     <visual>
       <origin
@@ -50,7 +49,47 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://conveyor_belt/meshes/belt_base.STL" />
+          filename="package://conveyor_belt/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="belt_link">
+    <inertial>
+      <origin
+        xyz="2.84 0.00499999999999995 2.76334119905601E-17"
+        rpy="0 0 0" />
+      <mass
+        value="56.8" />
+      <inertia
+        ixx="4.73380666666667"
+        ixy="3.71142749699624E-34"
+        ixz="2.20830761084774E-15"
+        iyy="157.442026666667"
+        iyz="2.30486925841449E-19"
+        izz="152.709166666667" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://conveyor_belt/meshes/belt_link.STL" />
       </geometry>
       <material
         name="">
@@ -64,133 +103,40 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://conveyor_belt/meshes/belt_base.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <link
-    name="belt_body">
-    <inertial>
-      <origin
-        xyz="0 -2.22044604925031E-16 0.0440791706940699"
-        rpy="0 0 0" />
-      <mass
-        value="25.4688050576424" />
-      <inertia
-        ixx="0.178224280202433"
-        ixy="-7.00919763852934E-17"
-        ixz="1.67838018042271E-18"
-        iyy="2.16108992355413"
-        iyz="-3.07796178423394E-16"
-        izz="2.24920451600626" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://conveyor_belt/meshes/belt_body.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.501960784313725 1 0.501960784313725 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://conveyor_belt/meshes/belt_body.STL" />
+          filename="package://conveyor_belt/meshes/belt_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="belt_body_joint"
-    type="fixed">
-    <origin
-      xyz="0.05 0 0.25"
-      rpy="0 0 0" />
-    <parent
-      link="belt_base" />
-    <child
-      link="belt_body" />
-    <axis
-      xyz="0 0 0" />
-  </joint>
-  <link
-    name="belt_moving">
-    <inertial>
-      <origin
-        xyz="0 0 0.00249999999999984"
-        rpy="0 0 0" />
-      <mass
-        value="1.15" />
-      <inertia
-        ixx="0.00599197916666667"
-        ixy="1.00903082185984E-18"
-        ixz="4.8890289964615E-20"
-        iyy="0.0811157291666667"
-        iyz="-2.09041534284049E-17"
-        izz="0.0871029166666667" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://conveyor_belt/meshes/belt_moving.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://conveyor_belt/meshes/belt_moving.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="belt_moving_joint"
+    name="belt_joint"
     type="prismatic">
     <origin
-      xyz="0.0031673 0 0.1"
-      rpy="0 0 0" />
+      xyz="-2.83 0 0.3"
+      rpy="1.5708 0 0" />
     <parent
-      link="belt_body" />
+      link="base_link" />
     <child
-      link="belt_moving" />
+      link="belt_link" />
     <axis
-      xyz="1 0 0" />
+      xyz="-1 0 0" />
     <limit
       lower="0"
-      upper="0.01"
-      effort="10"
-      velocity="10" />
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 
 
-  <gazebo reference="belt_base">
-    <xacro:belt_color />
-  </gazebo>
-  <gazebo reference="belt_body">
+<!-- Gazebo Colors -->
+  <gazebo reference="base_link">
     <xacro:body_color />
   </gazebo>
-  <gazebo reference="belt_moving">
+  <gazebo reference="belt_link">
     <xacro:belt_color />
   </gazebo>
+  
 
+<!-- Custom Gazebo Plugin for Conveyor Belt  -->
   <gazebo>
   <plugin filename="libconveyor_belt_plugin.so" name="conveyor_belt_plugin">
         <ros>
@@ -200,8 +146,5 @@
         <publish_rate>10</publish_rate>
   </plugin>
   </gazebo>
-
-  
-
 
 </robot>

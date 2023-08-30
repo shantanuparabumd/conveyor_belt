@@ -23,7 +23,7 @@ def generate_launch_description():
     use_urdf = False
     # Position and orientation
     # [X, Y, Z]
-    position = [0.0, 0.0, 0.01]
+    position = [0.0, 0.0, 0.8]
     # [Roll, Pitch, Yaw]
     orientation = [0.0, 0.0, 0.0]
     # Base Name or robot
@@ -81,55 +81,13 @@ def generate_launch_description():
         output="screen"
     )
 
-    # controller = 'wheel'
-    # args = [controller]
-    # controller_spawner = Node(
-    #             package="controller_manager",
-    #             executable="spawner",
-    #             name=controller + "_spawner",
-    #             arguments=["joint_state_broadcaster", "--controller-manager","/controller_manager"]
-    #         )
-    # box_bot_name = "robotaxi"
-    # spawn_controller_1_name = box_bot_name + "_spawn_controller_joint_state_broadcaster"
-    # spawn_controller_2_name = box_bot_name + "_spawn_controller_joint_trajectory_controller"
-    # spawn_controller_3_name = box_bot_name + "_spawn_controller_velocity_controller"
-    # controller_manager_name = box_bot_name + "/controller_manager"
 
-    # spawn_controller_1 = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     name=spawn_controller_1_name,
-    #     namespace=box_bot_name,
-    #     arguments=["joint_state_broadcaster", "--controller-manager", controller_manager_name],
-    #     output="screen"
-    # )
-
-    # spawn_controller_2 = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     name=spawn_controller_2_name,
-    #     namespace=box_bot_name,
-    #     arguments=["joint_trajectory_controller", "--controller-manager", controller_manager_name],
-    #     output="screen"
-    # )
-
-    # spawn_controller_3 = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     name=spawn_controller_3_name,
-    #     namespace=box_bot_name,
-    #     arguments=["velocity_controller", "--controller-manager", controller_manager_name],
-    #     output="screen"
-    # )
 
     # create and return launch description object
     return LaunchDescription(
         [   
             publish_robot_description,
             robot_state_publisher,
-            spawn_robot,
-            # spawn_controller_1,
-            # spawn_controller_2,
-            # spawn_controller_3
+            spawn_robot
         ]
     )
