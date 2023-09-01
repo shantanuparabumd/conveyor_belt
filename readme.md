@@ -1,7 +1,7 @@
 
 # Conveyor Belt Plugin
 
-<!-- ![Build Status](https://github.com/shantanuparabumd/project_legion/actions/workflows/project_legion_git_ci.yml/badge.svg) -->
+![Build Status](https://github.com/shantanuparabumd/conveyor_belt/actions/workflows/main.yml/badge.svg)
 
 
 ![Conveyor Belt](/videos/conveyor.png)
@@ -61,3 +61,6 @@ ros2 run conveyor_belt spawn_object.py
 ```
 
 **Watch your project work**
+
+https://github.com/shantanuparabumd/conveyor_belt/assets/112659509/0ed853e3-b937-45b8-adbb-2cfae711ef3d
+
