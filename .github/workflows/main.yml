@@ -75,7 +75,7 @@ jobs:
 
       - name: Build
         run: |
-           source /opt/ros/galcatic/setup.bash
+           source /opt/ros/galactic/setup.bash
            cd ros2_ws
            colcon build --packages-select conveyor_belt
            source install/local_setup.bash
