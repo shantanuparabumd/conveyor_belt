@@ -1,29 +1,28 @@
-"""
-spawn_turtlebot.py
+#!/usr/bin/env python3
 
-Script used to spawn a turtlebot in a generic position
-"""
 import os
 import sys
+import random
 import rclpy
 from ament_index_python.packages import get_package_share_directory
 from gazebo_msgs.srv import SpawnEntity
+import xacro
 
 def main():
     """ Main for spwaning turtlebot node """
     ####### DATA INPUT ##########
-    urdf_file = 'conveyor_belt.urdf'
-    xacro_file = "model.sdf"
-    #xacro_file = "box_bot.xacro"
-    package_description = "ariac_gazebo"
-    use_urdf = False
+
+    xacro_file = "box.urdf.xacro"
+    package_description = "conveyor_belt"
+
     # Position and orientation
     # [X, Y, Z]
-    position = [2.5, 0.0, 1.0]
+    position = [2.0, 0.0, 1.2]
     # [Roll, Pitch, Yaw]
     orientation = [0.0, 0.0, 0.0]
     # Base Name or robot
-    robot_base_name = "battery"
+    robot_base_name = "box"
+    entity_name=str(random.randint(0,30))
     ####### DATA INPUT END ##########
 
     argv = sys.argv[1:]
@@ -32,7 +31,7 @@ def main():
     rclpy.init()
 
     sdf_file_path = os.path.join(
-        get_package_share_directory(package_description), "models","battery",
+        get_package_share_directory(package_description), "urdf",
         xacro_file)
     
     node = rclpy.create_node("entity_spawner")
@@ -49,10 +48,13 @@ def main():
    
 
     # Set data for request
+    robot_desc = xacro.process_file(sdf_file_path)
+    
+
     request = SpawnEntity.Request()
-    request.name = robot_base_name+argv[0]
-    request.xml = open(sdf_file_path, 'r').read()
-    request.robot_namespace = argv[0]
+    request.name = robot_base_name + entity_name
+    request.xml = robot_desc.toxml()
+    request.robot_namespace = entity_name
     request.initial_pose.position.x = position[0]
     request.initial_pose.position.y = position[1]
     request.initial_pose.position.z = position[2]

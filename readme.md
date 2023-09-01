@@ -1,9 +1,5 @@
 
 # Conveyor Belt Plugging
-<!-- 
-[![codecov](https://codecov.io/gh/jayprajapati009/project_chakravyu/branch/main/graph/badge.svg?token=0C30FZ9SC6)](https://codecov.io/gh/jayprajapati009/project_chakravyu)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) -->
 
 <!-- ![Build Status](https://github.com/shantanuparabumd/project_legion/actions/workflows/project_legion_git_ci.yml/badge.svg) -->
 

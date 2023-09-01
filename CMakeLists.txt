@@ -28,9 +28,11 @@ find_package(xacro REQUIRED)
 install(DIRECTORY
     urdf
     meshes
+    meshes/box
     launch
     worlds
     src
+    scripts
     DESTINATION share/${PROJECT_NAME}/
     )
 
@@ -40,6 +42,7 @@ install(DIRECTORY
 install(
     PROGRAMS
     launch/robot_description_publisher.py
+    scripts/spawn_object.py
     DESTINATION lib/${PROJECT_NAME}
     )
 
@@ -55,13 +58,15 @@ ament_target_dependencies(conveyor_belt_plugin
 )
 ament_export_libraries(conveyor_belt_plugin)
 
-ament_package()
-
-install(DIRECTORY include/
-        DESTINATION include)
 
 install(TARGETS
     conveyor_belt_plugin
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin)
+
+ament_package()
+
+install(DIRECTORY include/
+        DESTINATION include)
+

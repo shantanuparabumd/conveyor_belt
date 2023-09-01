@@ -29,6 +29,7 @@ public:
 
   // Velocity to move the link
   double belt_velocity_;
+  double max_velocity_;
 
   /// Position limit of belt joint to reset 
   double limit_;
