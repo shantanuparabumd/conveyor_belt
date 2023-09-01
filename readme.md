@@ -1,7 +1,7 @@
 
 # Conveyor Belt Plugin
 
-![Build Status](https://github.com/shantanuparabumd/conveyor_belt/actions/workflows/main.yml/badge.svg)
+<!-- ![Build Status](https://github.com/shantanuparabumd/conveyor_belt/actions/workflows/main.yml/badge.svg) -->
 
 
 ![Conveyor Belt](/videos/conveyor.png)
