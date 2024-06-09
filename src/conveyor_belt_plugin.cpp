@@ -4,6 +4,7 @@
 #include <conveyor_belt/conveyor_belt_plugin.hpp>
 #include <gazebo_ros/node.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/bool.hpp>
 
 
 #include <memory>
@@ -37,6 +38,13 @@ public:
   // Callback function to perform task with each iteration in Gazebo
   void OnUpdate();
 
+  void OnPower(const std_msgs::msg::Bool::SharedPtr msg);
+
+
+  // Subscriber to get the state of conveyor belt
+  rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr power_subscriber;
+
+
 };
 
 
@@ -69,6 +77,11 @@ void ConveyorBeltPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr s
   // Create ROS node
   impl_->ros_node_ = gazebo_ros::Node::Get(sdf);
 
+
+  impl_->power_subscriber = impl_->ros_node_->create_subscription<std_msgs::msg::Bool>("conveyor_power", 
+    10, std::bind(&ConveyorBeltPluginPrivate::OnPower, impl_.get(), std::placeholders::_1));
+
+
   // Create/Get the  belt joint from the robot URDF
   impl_->belt_joint_ = model->GetJoint("belt_joint");
 
@@ -97,8 +110,6 @@ void ConveyorBeltPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr s
  */
 void ConveyorBeltPluginPrivate::OnUpdate()
 {
-  
-  belt_velocity_ = max_velocity_;
 
   // Set the velocity of the belt
   belt_joint_->SetVelocity(0, belt_velocity_);
@@ -112,6 +123,22 @@ void ConveyorBeltPluginPrivate::OnUpdate()
     belt_joint_->SetPosition(0, 0);
   }
 
+}
+
+
+/**
+ * @brief Callback function to get the state of the conveyor belt
+ * 
+ * @param msg 
+ */
+void ConveyorBeltPluginPrivate::OnPower(const std_msgs::msg::Bool::SharedPtr msg)
+{
+  if (msg->data == false){
+    belt_velocity_ = 0;
+  }
+  else{
+    belt_velocity_ = max_velocity_;
+  }
 }
 
 // Register this plugin with the simulator
